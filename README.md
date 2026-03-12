@@ -6,16 +6,38 @@ A comprehensive research pipeline for analyzing Multi-Agent System (MAS) interac
 
 This pipeline analyzes MAS interaction traces and extracts structural and coordination metrics using communication graphs. It supports both dataset-level aggregate analysis and detailed single-trace analysis.
 
+## 🚀 Quick Start
+
+### Interactive Dashboard (Recommended)
+```bash
+pip install -r requirements.txt
+streamlit run dashboard.py
+```
+Opens an interactive web dashboard at `http://localhost:8501`
+
+### Command-Line Interface
+```bash
+python main.py                    # Dataset-level analysis
+python main.py --task_id 5        # Single-trace analysis
+```
+
 ## Features
 
-### Dataset-Level Analysis
+### 🎨 Interactive Dashboard
+- **Real-time Visualization**: Interactive plots with zoom, pan, and hover
+- **Two Analysis Modes**: Switch between dataset and single-trace views
+- **Filterable Data**: Dynamic filtering and sorting
+- **Downloadable Results**: Export filtered data and visualizations
+- **Responsive Design**: Works on desktop and tablet
+
+### 📊 Dataset-Level Analysis
 - Analyze all traces in the MAST dataset
 - Compute aggregate statistics and distributions
 - Classify MAS architectures
 - Generate comprehensive visualizations
 - Export results to CSV
 
-### Single-Trace Analysis
+### 🔍 Single-Trace Analysis
 - Detailed breakdown of individual traces
 - Communication graph visualization
 - Step-by-step agent interaction analysis
@@ -66,7 +88,26 @@ pip install -r requirements.txt
 
 ## Usage
 
-### Dataset-Level Analysis
+### Option 1: Interactive Dashboard (Recommended)
+
+Launch the web-based dashboard:
+
+```bash
+streamlit run dashboard.py
+```
+
+**Features:**
+- Interactive visualizations with zoom, pan, and hover
+- Real-time filtering and exploration
+- Switch between dataset and single-trace modes
+- Download results directly from the interface
+- No coding required
+
+See [DASHBOARD_GUIDE.md](DASHBOARD_GUIDE.md) for detailed instructions.
+
+### Option 2: Command-Line Interface
+
+#### Dataset-Level Analysis
 
 Run analysis on the entire MAST dataset:
 
