@@ -35,6 +35,7 @@ def parse_agent_turns(trace: List[Dict[str, Any]]) -> Dict[str, Any]:
     
     # Extract unique agents
     agents = list(set(turn["agent"] for turn in turns if "agent" in turn))
+    print(f"Identified agents: {agents}")
     
     # Build transition sequence
     transitions = []

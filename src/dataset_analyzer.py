@@ -77,7 +77,7 @@ def analyze_dataset(df: pd.DataFrame) -> pd.DataFrame:
             "agent_dependency_ratio": metrics["agent_dependency_ratio"],
             "communication_entropy": metrics["communication_entropy"],
             "longest_path_length": metrics["longest_path_length"],
-            "avg_path_length": metrics["avg_path_length"],
+            "avg_path_length": metrics["average_path_length"],
         }
         
         # Add role flags

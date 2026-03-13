@@ -44,15 +44,15 @@ def classify_architecture(graph_features: Dict[str, Any], roles: Dict[str, bool]
         return "environment_interactive"
     
     # Hierarchical: Manager present with high centralization
-    if roles.get("manager", False) and max_centrality > 0.6:
+    elif roles.get("manager", False) and max_centrality > 0.6:
         return "hierarchical"
     
     # Planner-Executor: Planner with worker/executor
-    if roles.get("planner", False) and (roles.get("worker", False) or roles.get("assistant", False)):
+    elif roles.get("planner", False) and (roles.get("worker", False) or roles.get("assistant", False)):
         return "planner_executor"
     
     # Collaborative: High density and multiple agents
-    if density > 0.5 and num_agents >= 3:
+    elif density > 0.5 and num_agents >= 3:
         return "collaborative"
     
     # Sequential: Low density, few cycles, linear structure
@@ -60,7 +60,7 @@ def classify_architecture(graph_features: Dict[str, Any], roles: Dict[str, bool]
         return "sequential"
     
     # Cyclic: Presence of cycles indicates iterative refinement
-    if num_cycles > 0 and density > 0.3:
+    elif num_cycles > 0 and density > 0.3:
         return "iterative_refinement"
     
     # Default

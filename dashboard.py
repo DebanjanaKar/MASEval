@@ -50,6 +50,15 @@ st.markdown("""
         padding: 1rem;
         border-radius: 0.5rem;
         border-left: 4px solid #1f77b4;
+        color: #262730;
+    }
+    .metric-card strong {
+        color: #1f77b4;
+        font-size: 1.1rem;
+    }
+    .metric-card small {
+        color: #555555;
+        font-size: 0.9rem;
     }
     .stTabs [data-baseweb="tab-list"] {
         gap: 2rem;
@@ -489,6 +498,30 @@ def single_trace_view(df):
         
         st.markdown("---")
         
+        # Display Agent Roles
+        st.subheader("👥 Agent Roles")
+        trace_data = df.iloc[task_id]
+        if 'agent_roles' in trace_data and trace_data['agent_roles']:
+            agent_roles = trace_data['agent_roles']
+            
+            # Create columns for agent roles
+            num_cols = min(len(agent_roles), 3)
+            cols = st.columns(num_cols)
+            
+            for idx, (normalized, full_name) in enumerate(sorted(agent_roles.items())):
+                col_idx = idx % num_cols
+                with cols[col_idx]:
+                    st.markdown(f"""
+                    <div class="metric-card">
+                        <strong>{normalized}</strong><br/>
+                        <small>{full_name}</small>
+                    </div>
+                    """, unsafe_allow_html=True)
+        else:
+            st.info("Agent role information not available for this trace")
+        
+        st.markdown("---")
+        
         # Tabs for different views
         tab1, tab2, tab3, tab4 = st.tabs([
             "🕸️ Communication Graph",
@@ -525,25 +558,25 @@ def single_trace_view(df):
                 
                 st.markdown(f"""
                 <div class="metric-card">
-                    <h4>Loop Index (LI)</h4>
-                    <p style="font-size: 2rem; font-weight: bold;">{metrics['loop_index']:.4f}</p>
-                    <p>Measures interaction loops</p>
+                    <h4 style="color: #1f77b4; margin-bottom: 0.5rem;">Loop Index (LI)</h4>
+                    <p style="font-size: 2rem; font-weight: bold; color: #262730; margin: 0.5rem 0;">{metrics['loop_index']:.4f}</p>
+                    <p style="color: #555555; margin: 0;">Measures interaction loops</p>
                 </div>
                 """, unsafe_allow_html=True)
                 
                 st.markdown(f"""
                 <div class="metric-card">
-                    <h4>Agent Dependency Ratio (ADR)</h4>
-                    <p style="font-size: 2rem; font-weight: bold;">{metrics['agent_dependency_ratio']:.4f}</p>
-                    <p>Measures centralization</p>
+                    <h4 style="color: #1f77b4; margin-bottom: 0.5rem;">Agent Dependency Ratio (ADR)</h4>
+                    <p style="font-size: 2rem; font-weight: bold; color: #262730; margin: 0.5rem 0;">{metrics['agent_dependency_ratio']:.4f}</p>
+                    <p style="color: #555555; margin: 0;">Measures centralization</p>
                 </div>
                 """, unsafe_allow_html=True)
                 
                 st.markdown(f"""
                 <div class="metric-card">
-                    <h4>Communication Entropy (CE)</h4>
-                    <p style="font-size: 2rem; font-weight: bold;">{metrics['communication_entropy']:.4f}</p>
-                    <p>Measures unpredictability</p>
+                    <h4 style="color: #1f77b4; margin-bottom: 0.5rem;">Communication Entropy (CE)</h4>
+                    <p style="font-size: 2rem; font-weight: bold; color: #262730; margin: 0.5rem 0;">{metrics['communication_entropy']:.4f}</p>
+                    <p style="color: #555555; margin: 0;">Measures unpredictability</p>
                 </div>
                 """, unsafe_allow_html=True)
             
